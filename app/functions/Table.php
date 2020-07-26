@@ -34,13 +34,13 @@ class Table{
             }
 
             // mencari total data
-            $prep = DB::connection()->prepare($this->sql);
+            $prep = DB::run()->prepare($this->sql);
             $prep->execute($this->params);
 
             $this->totalData = $prep->rowCount();
 
             // mencari data setelah dilimit
-            $prep = DB::connection()->prepare($this->sql.' LIMIT '.(($this->page-1) * $this->max).','.$this->max);
+            $prep = DB::run()->prepare($this->sql.' LIMIT '.(($this->page-1) * $this->max).','.$this->max);
 
             $prep->execute($this->params);
 
