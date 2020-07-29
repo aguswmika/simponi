@@ -1,7 +1,7 @@
 <?php 
 class Validation
 {
-	private $config = [], $errors = [];
+	private $errors = [];
 
 	public function __construct($configs){
 		foreach ($configs as $key => $attribute) {
@@ -39,20 +39,21 @@ class Validation
 			}
 		}
 
-		return $this->errors;
+		return $this;
 	}
 
 	public function run(){
 		if(count($this->errors) > 0) 
 			return false;
 		else {
-		    foreach ($_SESSION as $key => $value){
-		        $check = strtolower($key);
-		        if(strpos($check, '_old_')){
+            foreach ($_SESSION as $key => $value){
+                $check = strtolower($key);
+                if(strpos($check, '_old_')){
                     unset($_SESSION[$key]);
                 }
             }
-		    return true;
+            
+            return true;
 		};
 	}
 

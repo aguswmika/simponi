@@ -20,7 +20,7 @@ if(strtolower($_SERVER['REQUEST_METHOD']) === 'post'){
 }
 
 require_once BASE_PATH.'app/router.php';
-$urls = '/'.trim(filter_var(str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['PHP_SELF']), FILTER_SANITIZE_URL), "/");
+$urls = '/'.trim(filter_var(str_replace($_SERVER['SCRIPT_NAME'], '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)), FILTER_SANITIZE_URL), "/");
 
 $found = false;
 $notAllowed = true;

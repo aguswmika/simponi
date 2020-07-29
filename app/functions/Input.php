@@ -35,6 +35,8 @@ class Input
     function setFile($file)
     {
         $this->file = $file;
+
+        return $this;
     }
 
     function getName($file)

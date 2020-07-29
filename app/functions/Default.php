@@ -19,7 +19,6 @@ if (!function_exists('model')) {
 if (!function_exists('view')) {
     function view($str, $data = [])
     {
-        model('akun');
         extract($data);
         return require BASE_PATH . 'app/views/' . $str . '.php';
     }

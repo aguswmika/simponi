@@ -4,15 +4,24 @@ Contoh menggunakan router
 
 
 Yang ini kalo mau pake class 
-	$routes['admin/:param'] = 'Landing@admin';
+	$routes['/admin/([a-z]*)'] = [
+        'method'   => 'GET',
+        'engine'   => 'AdminController@index',
+    ];
 
 Yang ini kalo mau pake prosedural
-	$routes['admin/:param'] = function($halo){
-		echo $halo;
-	};
+	$routes['/admin/([a-z]*)'] = [
+        'method'   => 'GET',
+        'engine'   => function($username){
+            return $username;
+        },
+    ];
 
 Yang ini routes default
-	$routes['default'] = 'Landing@index';
+	$routes['/'] = [
+        'method'   => 'GET',
+        'engine'   => 'LandingController@index',
+    ];
 
 */
 
@@ -21,10 +30,4 @@ Yang ini routes default
 $routes['/'] = [
     'method'   => 'GET',
     'engine'   => 'LandingController@index',
-];
-$routes['/apem/([0-9]*)/donat/([a-z]*)'] = [
-    'method'   => 'GET',
-    'engine'   => function($apem, $bolu){
-        echo $apem.$bolu;
-    }
 ];
